@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #define MAXSIZE 10
 typedef struct
 {
@@ -6,7 +7,55 @@ typedef struct
     int length;
 } Sqlist;
 
-void InitList(Sqlist &L);
+void InitList(Sqlist &L)
+{
+    L.length = 0;
+}
+
+bool ListInsert(Sqlist &L, int i, int e)
+{
+    // Some additional
+    // check i
+    if (i < 1 || i > L.length + 1)
+    {
+        printf("Wrong value of i, must between 1 ~ %d", L.length + 1);
+        return false;
+    }
+    // check full
+    if (L.length >= MAXSIZE)
+    {
+        printf("Now it's full");
+        return false;
+    }
+
+    // basic things for inserting
+    for (int j = MAXSIZE; j >= i; j--)
+    {
+        L.data[j] = L.data[j - 1];
+    }
+    L.data[i - 1] = e; // PA it's [i-1]
+    L.length++;
+}
+
+bool ListDelete(Sqlist &L, int i, int &e)
+{
+    // Some additional
+    // check i
+    if (i < 1 || i > L.length + 1)
+    {
+        printf("Wrong value of i, must between 1 ~ %d", L.length + 1);
+        return false;
+    }
+
+    // basic things for deleting
+    e = L.data[i - 1]; // take things back
+    for (int j = i; j < L.length; j++)
+    {
+        L.data[j - 1] = L.data[j];
+    }
+    // L.data[L.length-1]=0; seems not need to do this
+    L.length--;
+}
 
 int main(void)
 {
@@ -27,9 +76,4 @@ int main(void)
         printf("data[%d]:%d\n", i, L.data[i]);
     }
     return 0;
-}
-
-void InitList(Sqlist &L)
-{
-    L.length = 0;
 }
