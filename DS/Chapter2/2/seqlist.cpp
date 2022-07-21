@@ -35,6 +35,20 @@ void PrintList(Seqlist &L)
         printf("data[%d]=%d", i, L.data[i]);
     }
 }
+
+int LocateElem(Seqlist &L, int e)
+{
+    for (int i = 0; i < L.length; i++)
+    {
+        if (L.data[i] == e)
+        {
+            return i + 1;
+        }
+        else
+            return 0;
+    }
+}
+
 int main(void)
 {
     Seqlist L;
