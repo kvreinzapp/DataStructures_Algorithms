@@ -21,6 +21,8 @@ bool Empty(LinkList L)
 {
     return (L->next == NULL);
 }
+
+/*******************************************************Insert**************************************************/
 bool ListInsert(LinkList &L, int i, int e)
 {
     // i can't less than 1
@@ -39,7 +41,7 @@ bool ListInsert(LinkList &L, int i, int e)
     // now j must equal to i-1  and  p point to it
     // because it is a linklist, so we have to use a loop to point i-1 one node by one node
 
-    // the oif here is for the bigger i, if i is so big, p will point to NULL, because the LinkList's end is point to NULL
+    // the if here is for the bigger i, if i is so big, p will point to NULL, because the LinkList's end is point to NULL
     if (p == NULL)
         return false;
 
@@ -49,8 +51,19 @@ bool ListInsert(LinkList &L, int i, int e)
     // must save the information in new place(the new node) before we change the last node's next
     s->next = p->next;
     p->next = s;
+    return true;
 }
 
+// Another way to write, using writened functions, very clear!
+bool ListInsert(LinkList &L, int i, int e)
+{
+    if (i < 1)
+        return false;
+    LNode *p = GetElem(L, i - 1);
+    return InsertNextNode(p, e);
+}
+
+// Insert next and prior node
 bool InsertNextNode(LNode *p, int e) // PA: we give it a pointer, not node
 {
     if (p == NULL)
@@ -78,6 +91,7 @@ bool InsertPriorNode(LNode *p, int e) // quite smart
     return true;
 }
 
+/************************************************************Delete**************************************************/
 bool ListDelete(LinkList &L, int i, int e)
 {
     if (i < 1)
@@ -113,6 +127,28 @@ bool DeleteNode(LNode *p) // if p is the last node, this code will have bug
     free(q);
     return true;
 }
+
+/*****************************************************Find**********************************************************/
+/**************find by order**********/
+// GetElem can be called to find the node in the above functions
+// Like : LNode *p=GetElem(L,i-1);
+LNode *GetElem(LinkList L, int i)
+{
+    if (i < 0)       // Here we considered the head point as the 0st point, so i<0 instead of i<1, doesn't like before
+        return NULL; // not return fasle, it's NULL
+
+    // From here is same
+    LNode *p = L;
+    int j = 0;
+    while (p != NULL && j < i)
+    {
+        p = p->next;
+        j++;
+    }
+    return p;
+}
+
+/**************find by value*************/
 
 int main(void)
 {

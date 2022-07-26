@@ -30,6 +30,7 @@ bool ListInsert(LinkList &L, int i, int e)
         s->data = e;
         s->next = L;
         L = s; // Let head pointer point to new node
+        return true;
     }
 
     LNode *p;
@@ -48,6 +49,8 @@ bool ListInsert(LinkList &L, int i, int e)
     p->next = s;
     return true;
 }
+bool InsertNextNode(LNode *p, int e);  // same as head
+bool InsertPriorNode(LNode *p, int e); // same as head
 bool ListDelete(LinkList &L, int i, int e)
 {
     if (i < 1)
@@ -55,7 +58,10 @@ bool ListDelete(LinkList &L, int i, int e)
     if (i == 1)
     {
         LNode *p = L;
+        e = p->data;
         L = p->next;
+        free(p);
+        return true;
     }
 
     // I guess that we can still use p here?
@@ -76,6 +82,8 @@ bool ListDelete(LinkList &L, int i, int e)
     free(q);
     return false;
 }
+bool DeleteNode(LNode *p); // same as head
+
 int main(void)
 {
     // Let L point to a list
