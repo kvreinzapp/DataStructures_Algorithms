@@ -145,11 +145,48 @@ LNode *GetElem(LinkList L, int i)
         p = p->next;
         j++;
     }
+    // don't need it any more, because if p==NULL, we just return it
+    //  if (p == NULL)
+    //      return NULL;
     return p;
 }
 
 /**************find by value*************/
-
+LNode *LocateElem(LinkList L, int e)
+{
+    LNode *p = L->next;
+    while (p != NULL && p->data != e)
+    {
+        p = p->next;
+    }
+    return p; // same reason, if p==NULL, just return it
+}
+/**************calculate the length*************/
+int Length(LinkList L)
+{
+    int len = 0;
+    LNode *p = L->next;
+    while (p != NULL)
+    {
+        p = p->next;
+        len++;
+    }
+    return len;
+}
+// vedio version
+int Length(LinkList L)
+{
+    int len = 0;
+    LNode *p = L;
+    while (p->next != NULL)
+    {
+        p = p->next;
+        len++;
+    }
+    return len;
+}
+// p=a;p—>n!=NULL;p=b,+1;p-n!NULL;p=c.+1;p-n=NULL,out
+// you see , int this way, 3 node, i is two,is that right?
 int main(void)
 {
 }

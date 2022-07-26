@@ -84,6 +84,20 @@ bool ListDelete(LinkList &L, int i, int e)
 }
 bool DeleteNode(LNode *p); // same as head
 
+LNode *GetElem(LinkList L, int i)
+{
+    if (i < 1)
+        return NULL;
+
+    LNode *p = L;
+    int j = 1; // maybe the only diff
+    while (p != NULL && j < i)
+    {
+        p = p->next;
+        j++;
+    }
+    return p;
+}
 int main(void)
 {
     // Let L point to a list
