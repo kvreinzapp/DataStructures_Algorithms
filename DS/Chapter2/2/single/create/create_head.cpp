@@ -8,20 +8,19 @@ typedef struct LNode
     struct LNode *next;
 } LNode, *LinkList;
 
-LinkList List_TaliInsert(LinkList &L)
+LinkList List_TailInsert(LinkList &L)
 {
     int x;
     L = (LinkList)malloc(sizeof(LNode));
     L->next == NULL; // You'd better write this
-    LNode *s, *r = L;
-    scanf("%d", &x);
-    while (x != 9999)
+    LNode *r = L;
+    while (1 == scanf("%d", &x))
     {
-        s = (LNode *)malloc(sizeof(LNode));
+        LNode *s = (LNode *)malloc(sizeof(LNode));
         s->data = x;
+        // key logic: why called tail
         r->next = s;
         r = s;
-        scanf("%d", &x);
     }
     r->next = NULL;
     return L;
@@ -29,18 +28,18 @@ LinkList List_TaliInsert(LinkList &L)
 
 LinkList List_HeadInsert(LinkList &L)
 {
-    LNode *s; // why you write it here? necessray?
+    // LNode *s; // why you write it here? necessray? //Maybe not
     int x;
     L = (LinkList)malloc(sizeof(LNode));
     L->next = NULL; // must have in headinsert. or the list will point to anywhere
-    scanf("%d", &x);
-    while (x != 9999)
+
+    while (1 == scanf("%d", &x))
     {
-        s = (LNode *)malloc(sizeof(LNode));
+        LNode *s = (LNode *)malloc(sizeof(LNode));
         s->data = x;
+        // key logic: why called head
         s->next = L->next; // here's why L->next must be NULL
         L->next = s;
-        scanf("%d", &x);
     }
     return L;
 }
@@ -48,16 +47,41 @@ LinkList List_HeadInsert(LinkList &L)
 void ListPrint(LinkList L)
 {
     LNode *p = L;
-    while (p->next != NULL)
+    while (p != NULL)
     {
-        p = p->next;
         printf("%d ", p->data);
+        p = p->next;
     }
+    printf("\n");
 }
 
+LinkList ListInverse(LinkList L)
+{
+    LinkList S = (LinkList)malloc(sizeof(LNode));
+    S->next = NULL;
+    LNode *p = L->next;
+    while (p != NULL)
+    {
+        LNode *s = (LNode *)malloc(sizeof(LNode));
+        s->data = p->data;
+        // same as head_insert
+        s->next = S->next;
+        S->next = s;
+        p = p->next;
+    }
+    return S;
+}
 int main(void)
 {
     LinkList L;
-    List_TaliInsert(L);
+    int x;
+
+    printf("Enter you list here(1st time using head insert):\n");
+    List_HeadInsert(L);
+    printf("Your list is: ");
+    ListPrint(L);
+    // Inverse after head insert
+    L = ListInverse(L);
+    printf("Inversed: ");
     ListPrint(L);
 }

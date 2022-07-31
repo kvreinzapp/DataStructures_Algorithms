@@ -16,5 +16,8 @@
 // CO course
 // https://www.icourse163.org/learn/kaopei-1464361184?tid=1465257473#/learn/announce
 
+// C course
+// https://www.icourse163.org/learn/kaopei-1464522184?tid=1465440493#/learn/announce
+
 // DS enhance
 // https://www.icourse163.org/learn/kaopei-1464543192?tid=1465438501#/learn/content
