@@ -44,6 +44,7 @@ bool DeleteNextNode(Dnode *p)
     if (q->next != NULL)
         q->next->prior = p;
     free(q);
+    return true;
 }
 
 void DestroyList(DLinklist &L)
