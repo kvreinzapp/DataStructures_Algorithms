@@ -64,17 +64,28 @@ LinkList List_HeadInsert(LinkList &L)
     int x = Take_int();
     LNode *s = (LNode *)malloc(sizeof(LNode));
     s->data = x;
-    s->next = L;
+    s->next = NULL;
     L = s;
-    while (1 == scanf("%d"))
+    printf("now:%d\n", s->data);
+    // for remain
+    LNode *p = s;
+    while (1 == scanf("%d", &x))
     {
-        /* code */
+        LNode *s = (LNode *)malloc(sizeof(LNode));
+        s->data = x;
+        s->next = p;
+        L = s;
+        p = s;
+        printf("now:%d\n", s->data);
     }
+    return L;
 }
 
 int main(void)
 {
     LinkList L;
-    List_TailInsert(L);
+    // List_TailInsert(L);
+    // ListPrint(L);
+    List_HeadInsert(L);
     ListPrint(L);
 }
