@@ -9,6 +9,7 @@ typedef struct SqQueue
     int front, rear;
 } SqQueue;
 
+/******************Initialization*******************/
 void InitQueue(SqQueue &Q)
 {
     Q.rear = Q.front = 0;
