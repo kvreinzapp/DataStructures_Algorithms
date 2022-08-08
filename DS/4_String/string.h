@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 #include <stdbool.h>
 #include <stdlib.h>
 #define MAXLEN 255
@@ -47,21 +47,52 @@ bool StrCompare(SString &S, SString &T)
     for (int i = 1; i <= S.length && i <= T.length; i++)
     {
         if (S.ch[i] != T.ch[i])
-            return S.ch[i] - S.ch[i];
+            return S.ch[i] - T.ch[i];
     }
     return S.length - T.length;
+}
+
+// length
+int StrLength(SString &S)
+{
+    return S.length;
 }
 
 // Index the frist occurrence
 bool Index(SString &S, SString &T)
 {
-    int flag = 0;
-    for (int i = 1; i <= S.length; i++)
+    int i = 1, n = StrLength(S), m = StrLength(T);
+    SString sub;
+    while (i <= n - m + 1)
     {
-        for (int j = 1; j <= T.length; j++)
-            if (T.ch[j] == S.ch[i])
-                ;
-        flag = 1;
+        SubString(sub, S, i, m);
+        if (StrCompare(Sub, T) != 0)
+            ++i;
+        else
+            return i;
     }
-    return flag;
+    return 0;
+}
+
+//
+int IndexBasic(SString S, SString T)
+{
+    int i = 1, j = 1;
+    while (i <= S.length && j <= T.length)
+    {
+        if (S.ch[i] == T.ch[j])
+        {
+            ++i;
+            ++j;
+        }
+        else
+        {
+            i = i - j + 2; // really important
+            j = 1;
+        }
+    }
+    if (j > T.length)
+        return i - T.length;
+    else
+        return 0;
 }
