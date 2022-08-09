@@ -2,22 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/*************Declaration***************/
-struct ElemType
-{
-    int value;
-} typedef struct BiTNode
-{
-    ElemType data;
-    struct BiTNode *lchild, *rchild;
-} BiTNode, *BiTree;
-
-typedef struct LinkNode
-{
-    BiTNode *data;
-    struct LinkNode *next;
-} LinkNode;
-
 typedef struct
 {
     LinkNode *front, *rear;

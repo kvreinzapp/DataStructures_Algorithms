@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+/********************Declaration*******************/
 typedef struct Dnode
 {
     int data;
     struct Dnode *prior, *next;
 } Dnode, *DLinklist;
 
+/********************Operation*******************/
+/******Init******/
 bool InitDLinklist(DLinklist &L)
 {
 
@@ -17,12 +20,12 @@ bool InitDLinklist(DLinklist &L)
     L->prior = NULL;
     return true;
 }
-
+/******Empty******/
 bool Empty(DLinklist L)
 {
     return (L->next == NULL);
 }
-
+/******Insert******/
 bool InsertNextNode(Dnode *p, Dnode *s) // In double link list, this function is the basiced func
 {
     if (p == NULL || s == NULL)
@@ -33,6 +36,7 @@ bool InsertNextNode(Dnode *p, Dnode *s) // In double link list, this function is
     p->next = s;
     s->prior = p;
 }
+/******Delete******/
 bool DeleteNextNode(Dnode *p)
 {
     if (p == NULL)
@@ -46,7 +50,7 @@ bool DeleteNextNode(Dnode *p)
     free(q);
     return true;
 }
-
+/******Destroy******/
 void DestroyList(DLinklist &L)
 {
     while (L->next != NULL)
@@ -54,7 +58,7 @@ void DestroyList(DLinklist &L)
     free(L);
     L = NULL;
 }
-
+/******Print******/
 void PrintList(DLinklist L) // can't be implement, just here illustrate sth
 {
     Dnode *p = L;
