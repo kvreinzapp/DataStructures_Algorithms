@@ -8,23 +8,23 @@ struct ElemType
     int value;
 };
 
-typedef struct BiTNode
+typedef struct BitNode
 {
     char data;
-    struct BiTNode *lchild, *rchild;
-} BiTNode, *BitTree;
+    struct BitNode *lchild, *rchild;
+} BitNode, *BitTree;
 
 /************Operation******************/
 
 /*******Empty*****/
-bool IsEmpty(BiTNode *T)
+bool IsEmpty(BitNode *T)
 {
     return (T->lchild == NULL && T->rchild == NULL);
 }
 /*******AddNode*****/
-BiTNode *newNode(BiTNode *&parent, char ch)
+BitNode *newNode(BitNode *&parent, char ch)
 {
-    BiTNode *seven = (BiTNode *)malloc(sizeof(BiTNode));
+    BitNode *seven = (BitNode *)malloc(sizeof(BitNode));
     seven->data = {ch};
     seven->lchild = NULL;
     seven->rchild = NULL;
@@ -34,7 +34,7 @@ BiTNode *newNode(BiTNode *&parent, char ch)
 
 void addRange(BitTree &root, int range)
 {
-    BiTNode *p[20];
+    BitNode *p[20];
     p[1] = NULL;
     for (int i = 1; i <= range; i++)
     {
@@ -51,10 +51,11 @@ void addRange(BitTree &root, int range)
     root = p[1];
 }
 
-void visit(BiTNode *T)
+void visit(BitNode *T)
 {
     printf("%c\n", T->data);
 }
+
 void InOrder(BitTree T)
 {
     if (T != NULL)
@@ -64,6 +65,7 @@ void InOrder(BitTree T)
         InOrder(T->rchild);
     }
 }
+
 int main(void)
 {
     BitTree root;

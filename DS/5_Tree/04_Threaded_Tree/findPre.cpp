@@ -2,87 +2,63 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/*************Declaration***************/
-struct ElemType
+/***************************************************Declaration******************************************************/
+struct ElemType // Kind of useless
 {
     int value;
 };
 
-typedef struct BiTNode
+typedef struct BitNode
 {
     char data;
-    struct BiTNode *lchild, *rchild;
-} BiTNode, *BiTree;
+    struct BitNode *lchild, *rchild;
+} BitNode, *BitTree;
 
-/// Used in visit(), p should Point to target node, the final is p's prenode(Inorder)
-BiTNode *p;
-BiTNode *pre = NULL;
-BiTNode *final = NULL;
+// Used in visit(), p should Point to target node, the final is p's prenode(Inorder)
+BitNode *p;
+BitNode *pre = NULL;
+BitNode *final = NULL;
 
-/************Operation******************/
-/*******Init*****/
+/***************************************************Basic-Functions******************************************************/
 
-/*******Empty*****/
-bool IsEmpty(BiTNode *T)
+/*******************Empty***********************/
+bool IsEmpty(BitNode *T)
 {
     return (T->lchild == NULL && T->rchild == NULL);
 }
-/*******AddNode*****/
-void AddandInit(BiTree &root)
+
+/*******************AddNode***********************/
+BitNode *newNode(BitNode *&parent, char ch)
 {
-    // NULL tree
-    root = NULL;
-
-    // add root
-    root = (BiTree)malloc(sizeof(BiTNode));
-    root->data = {'A'};
-    root->lchild = NULL;
-    root->rchild = NULL;
-
-    // add new node
-    BiTNode *sec = (BiTNode *)malloc(sizeof(BiTNode));
-    sec->data = {'B'};
-    sec->lchild = NULL;
-    sec->rchild = NULL;
-    root->lchild = sec;
-
-    // add new node
-    BiTNode *thir = (BiTNode *)malloc(sizeof(BiTNode));
-    thir->data = {'C'};
-    thir->lchild = NULL;
-    thir->rchild = NULL;
-    root->rchild = thir;
-
-    // add new node
-    BiTNode *four = (BiTNode *)malloc(sizeof(BiTNode));
-    four->data = {'D'};
-    four->lchild = NULL;
-    four->rchild = NULL;
-    sec->lchild = four;
-
-    // add new node
-    BiTNode *five = (BiTNode *)malloc(sizeof(BiTNode));
-    five->data = {'E'};
-    five->lchild = NULL;
-    five->rchild = NULL;
-    sec->rchild = five;
-
-    // add new node
-    BiTNode *six = (BiTNode *)malloc(sizeof(BiTNode));
-    six->data = {'F'};
-    six->lchild = NULL;
-    six->rchild = NULL;
-    thir->rchild = six;
-
-    // add new node
-    BiTNode *seven = (BiTNode *)malloc(sizeof(BiTNode));
-    seven->data = {'G'};
+    BitNode *seven = (BitNode *)malloc(sizeof(BitNode));
+    seven->data = {ch};
     seven->lchild = NULL;
     seven->rchild = NULL;
-    four->rchild = seven;
+    parent = seven;
+    return seven;
 }
 
-void visit(BiTNode *q)
+void addRange(BitTree &root, int range)
+{
+    BitNode *p[20];
+    p[1] = NULL;
+    for (int i = 1; i <= range; i++)
+    {
+        if (i == 1)
+            p[1] = newNode(p[1], 'A');
+        else
+        {
+            if (i % 2 == 0)
+                p[i] = newNode(p[i / 2]->lchild, 64 + i);
+            else
+                p[i] = newNode(p[i / 2]->rchild, 64 + i);
+        }
+    }
+    root = p[1];
+}
+
+/***************************************************Main-Topic******************************************************/
+void visit(BitNode *q)
 {
     // Only  when q==p. or say q grows to p, pre can be the real final
     if (q == p)
@@ -92,7 +68,8 @@ void visit(BiTNode *q)
 
     printf("%c\n", q->data);
 }
-void FindPre(BiTree T)
+
+void FindPre(BitTree T) // same as InOrder
 {
     if (T != NULL)
     {
@@ -101,9 +78,10 @@ void FindPre(BiTree T)
         FindPre(T->rchild);
     }
 }
+
 int main(void)
 {
-    BiTree root;
-    AddandInit(root);
+    BitTree root;
+    addRange(root, 6);
     FindPre(root);
 }
