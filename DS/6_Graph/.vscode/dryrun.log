@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/klausvreinherz/Codefield/DataStructures_Algorithms/DS/6_Graph'
+make: Leaving directory '/home/klausvreinherz/Codefield/DataStructures_Algorithms/DS/6_Graph'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
