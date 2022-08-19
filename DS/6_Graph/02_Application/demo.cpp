@@ -43,3 +43,5 @@ int main(void)
 {
     CreateDiGraph();
 }
+
+// Today is learningful
