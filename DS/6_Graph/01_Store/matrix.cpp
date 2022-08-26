@@ -22,6 +22,3 @@ typedef struct
     EdgeType Edge[MaxVertexNum][MaxVertexNum];
     int vexnum, arcnum;
 } MGraph;
-
-// tommoroe find a boook
-// What's the problem
