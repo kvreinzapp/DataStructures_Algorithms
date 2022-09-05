@@ -122,7 +122,7 @@ bool ListDelete(SqList &L, int i, ElemType &e)
 
     // basic things for deleting
     e = L.data[i - 1]; // take things back
-    if (i < L.length) /* 如果删除不是最后位置 */
+    if (i < L.length)  // If not the last position
     {
         for (int k = i; k < L.length; k++)
         {
@@ -133,23 +133,36 @@ bool ListDelete(SqList &L, int i, ElemType &e)
     return true;
 }
 
+/* 初始条件：顺序线性表L已存在 */
+/* 操作结果：依次对L的每个数据元素输出 */
+bool ListTraverse(SqList L)
+{
+    int i;
+    for (i = 0; i < L.length; i++)
+        visit(L.data[i]);
+    printf("\n");
+    return true;
+}
+
+/*将所有的在线性表Lb中但不在La中的数据元素插入到La中*/
+void unionL(SqList &La, SqList Lb)
+{
+    int La_len, Lb_len, i;
+    ElemType e;              /*声明与La和Lb相同的数据元素e*/
+    La_len = ListLength(La); /*求线性表的长度 */
+    Lb_len = ListLength(Lb);
+    for (i = 1; i <= Lb_len; i++)
+    {
+        GetElem(Lb, i, e);               /*取Lb中第i个数据元素赋给e*/
+        if (!LocateElem(La, e))          /*La中不存在和e相同数据元素*/
+            ListInsert(La, ++La_len, e); /*插入*/
+    }
+}
+
 int main(void)
 {
     SqList L;
     InitList(L);
 
-    // //The for loop down bellow here is wrong
-
-    // for (int i = 0; i < MAXSIZE; i++)
-    // {
-    //     printf("data[%d]:%d\n", i, L.data[i]);
-    // }
-
-    // Right one: use L.length intead of MAXSIZE
-    // Of course function is a better way
-    for (int i = 0; i < L.length; i++)
-    {
-        printf("data[%d]:%d\n", i, L.data[i]);
-    }
     return 0;
 }
