@@ -1,8 +1,6 @@
 // Sequence list -- Static
 #include <stdio.h>
-
 #include <stdbool.h>
-
 #define MAXSIZE 10
 typedef int ElemType;
 typedef struct

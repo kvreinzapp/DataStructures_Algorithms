@@ -1,0 +1,14 @@
+2010-42:
+    Init:
+        ✔ Tell us the p @done(22-10-04 19:53)
+        ✔ allocate an array, tell us the n @done(22-10-04 19:53)
+        ✔ juge p @done(22-10-04 19:53)
+    Move:
+        Store the outer numbers:
+            ✔ 0 to p-1 assigned to new array @done(22-10-04 20:20)
+        Assign the following numbers to new positions:
+            ✔ p to n-1 assigned to 0 to n-p-1 @done(22-10-04 20:20)
+        Assign the outer numbers:
+            ✔ new array 0 to p-1 assigned to n-p to n-1 @done(22-10-04 21:10)
+
+2011-4git git · 
