@@ -28,11 +28,35 @@ void head_insert(Node *L, ElemType e) {
   L->next = p;
 }
 
+Node *getTail(Node *L) {
+  Node *p = L;
+  while (p->next != NULL) {
+    p = p->next;
+  }
+  return p;
+}
+void tail_insert(Node *L, ElemType e) {
+  Node *p = getTail(L);
+  Node *q = (Node *)malloc(sizeof(Node));
+  p->next = q;
+  q->next = NULL;
+  q->data = e;
+}
+
 void traverse(Node *L) {
   Node *p = L;
   while (p->next != NULL) {
     p = p->next;
     printf("%d ", p->data);
+  }
+  puts("");
+}
+
+void traverse_withoutHead(Node *L) {
+  Node *p = L;
+  while (p != NULL) {
+    printf("%d ", p->data);
+    p = p->next;
   }
   puts("");
 }
