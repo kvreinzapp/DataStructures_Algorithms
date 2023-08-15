@@ -13,7 +13,6 @@ void reRange(struct node *head) {
     fast = fast->next->next;
     slow = slow->next;
   }
-  Node *temp = slow->next;
 
   struct node *first = NULL;
   struct node *second = slow->next; // break from middle node and its next node.
@@ -29,7 +28,6 @@ void reRange(struct node *head) {
   struct node *p1 = head;
   struct node *q1 = first;
   struct node *p2, *q2;
-
   while (p1 != NULL && q1 != NULL) {
     p2 = p1->next;
     q2 = q1->next;
@@ -44,14 +42,15 @@ void reRange(struct node *head) {
 
 int main(void) {
   Node *L = init();
-  L->data = 1;
+  tail_insert(L, 1);
   tail_insert(L, 2);
   tail_insert(L, 3);
   tail_insert(L, 4);
   tail_insert(L, 5);
   tail_insert(L, 6);
   tail_insert(L, 7);
-  traverse_withoutHead(L);
+  tail_insert(L, 8);
+  traverse(L);
   reRange(L);
-  traverse_withoutHead(L);
+  traverse(L);
 }
