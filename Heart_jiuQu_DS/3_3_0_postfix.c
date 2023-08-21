@@ -1,4 +1,5 @@
 #include "00_stackSeq.h"
+#include <stdio.h>
 
 typedef enum {
   LEFT_PARE,
@@ -10,13 +11,13 @@ typedef enum {
   MOD,
   EOS,
   NUM
-} precedence;
+} precedence; // EOS: end of string, NUM: numbers
 
 char *expr;
 
 precedence get_token(char *symbol, int *index) {
   *symbol = expr[*index];
-  *index = *index + 1; //?
+  *index = *index + 1;
   switch (*symbol) {
   case '(':
     return LEFT_PARE;
@@ -41,10 +42,12 @@ precedence get_token(char *symbol, int *index) {
 
 int eval(Stack *S) {
   char symbol;
-  int index = 0;
   int op1, op2;
+  int index = 0;
   precedence token;
+
   token = get_token(&symbol, &index);
+
   while (token != EOS) {
     if (NUM == token) {
       push(S, symbol - '0');
@@ -73,6 +76,7 @@ int eval(Stack *S) {
     }
     token = get_token(&symbol, &index);
   }
+
   int result = pop(S);
   printf("result is %d\n", result);
   return 0;
@@ -83,7 +87,7 @@ int main(int argc, char **argv) {
   init_stack(&S);
 
   expr = argv[1];
-  printf("input is %s\n", expr);
+  printf("intput is %s\n", expr);
   eval(&S);
   return 0;
 }
