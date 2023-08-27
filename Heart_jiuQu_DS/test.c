@@ -1,89 +1,17 @@
-#include "00_stackSeq.h"
+#include <stdio.h>
+typedef struct NodeTree {
+  char data;
+  struct NodeTree *left;
+  struct NodeTree *right;
+} NodeTree, *BiTree;
 
-typedef enum {
-  LEFT_PARE,
-  RIGHT_PARE,
-  ADD,
-  SUB,
-  MUL,
-  DIV,
-  MOD,
-  EOS,
-  NUM
-} precedence;
+void changeIt(BiTree T) { T = NULL; }
 
-char *expr;
+int main() {
+  NodeTree A;
+  NodeTree *I = &A;
 
-precedence get_token(char *symbol, int *index) {
-  *symbol = expr[*index];
-  *index = *index + 1; //?
-  switch (*symbol) {
-  case '(':
-    return LEFT_PARE;
-  case ')':
-    return RIGHT_PARE;
-  case '+':
-    return ADD;
-  case '-':
-    return SUB;
-  case '*':
-    return MUL;
-  case '/':
-    return DIV;
-  case '%':
-    return MOD;
-  case '\0':
-    return EOS;
-  default:
-    return NUM;
-  }
-}
-
-int eval(Stack *S) {
-  char symbol;
-  int index = 0;
-  int op1, op2;
-  precedence token;
-  token = get_token(&symbol, &index);
-  while (token != EOS) {
-    if (NUM == token) {
-      push(S, symbol - '0');
-    } else {
-      op2 = pop(S);
-      op1 = pop(S);
-      switch (token) {
-      case ADD:
-        push(S, op1 + op2);
-        break;
-      case SUB:
-        push(S, op1 - op2);
-        break;
-      case MUL:
-        push(S, op1 * op2);
-        break;
-      case DIV:
-        push(S, op1 / op2);
-        break;
-      case MOD:
-        push(S, op1 % op2);
-        break;
-      default:
-        break;
-      }
-    }
-    token = get_token(&symbol, &index);
-  }
-  int result = pop(S);
-  printf("result is %d\n", result);
-  return 0;
-}
-
-int main(int argc, char **argv) {
-  Stack S;
-  init_stack(&S);
-
-  expr = argv[1];
-  printf("input is %s\n", expr);
-  eval(&S);
-  return 0;
+  printf("I->left:%p\n", I->left);
+  changeIt(I);
+  printf("I->left:%p\n", I->left);
 }
