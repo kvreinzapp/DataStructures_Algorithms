@@ -24,7 +24,7 @@ int is_empty(Queue *Q) {
 int queue_full(Queue *Q) { return 1; }
 
 int enqueue(Queue *Q, Elemtype e) {
-  if (MAX_SIZE - 1 == Q->rear) {
+  if (MAX_SIZE - 1 <= Q->rear) {
     queue_full();
   }
   Q->data[Q->rear] = e;
