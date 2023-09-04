@@ -77,19 +77,16 @@ void inorder_threading(
 
 void thread_inorder_noRecur(ThreadTree head) {
   ThreadTree curr = head->left_child;
-
   while (curr != head) {
     while (curr->left_tag == 0) {
       curr = curr->left_child;
     }
-
     printf("%c", curr->data);
 
     while (curr->right_tag == 1 && curr->right_child != head) {
       curr = curr->right_child;
       printf("%c", curr->data);
     }
-
     curr = curr->right_child;
   }
   puts("");
