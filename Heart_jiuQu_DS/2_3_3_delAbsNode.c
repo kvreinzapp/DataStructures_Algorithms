@@ -1,4 +1,4 @@
-#include "00_linkedList.h"
+#include "00_typedefNode.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
