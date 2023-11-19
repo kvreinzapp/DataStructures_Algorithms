@@ -1,13 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "00_typedefBTree_char.h"
 
-typedef struct node {
-  char data;
-  struct node *left_child;
-  struct node *right_child;
-} TreeNode, *BiTree;
-
-char *str = "ABDH#K###E##CFI###G#J##";
+char *str = "#H#K#D#B#E#A#I#F#C#G#J#"; // in order output
 int Index = 0;
 
 void create_tree(BiTree *T) {
@@ -18,8 +11,8 @@ void create_tree(BiTree *T) {
     *T = NULL;
   } else {
     *T = (BiTree)malloc(sizeof(TreeNode));
-    (*T)->data = ch;
     create_tree(&(*T)->left_child);
+    (*T)->data = ch;
     create_tree(&(*T)->right_child);
   }
 }
