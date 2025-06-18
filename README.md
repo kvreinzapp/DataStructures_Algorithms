@@ -1,2 +1,2 @@
 # DS_Algorithms
-Start to learn DS and Algorithms from some books
+All the practices and notes when i try to learn and understand the data structure and the algorithms.
